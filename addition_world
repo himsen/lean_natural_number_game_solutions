@@ -1,0 +1,51 @@
+level 1: 0+n=n
+induction n with d hd
+rw [add_zero]
+rfl
+nth_rewrite 2 [succ_eq_add_one]
+nth_rewrite 2 [← hd]
+rw [← succ_eq_add_one]
+rw [add_succ]
+rfl
+
+level 2: succ(a)+b=succ(a+b)
+induction b with d hd
+nth_rewrite 2 [succ_eq_add_one]
+rw [add_zero]
+rw [add_zero]
+rw [← succ_eq_add_one]
+rfl
+nth_rewrite 3 [succ_eq_add_one]
+nth_rewrite 2 [add_succ]
+rw [← hd]
+rw [← succ_eq_add_one]
+rw [succ_eq_add_one d]
+rw [← succ_eq_add_one]
+rw [add_succ]
+rfl
+
+level 3: a+b=b+a
+induction b with d hd
+rw [zero_add, add_zero]
+rfl
+rw [succ_add]
+rw [← hd]
+rw [← add_succ]
+rfl
+
+level 4: (a+b)+c=a+(b+c)
+induction c with d hd
+rw [add_zero]
+rw [add_zero]
+rfl
+rw [add_succ]
+rw [hd]
+rw [← add_succ]
+rw [← add_succ]
+rfl
+
+level 5: (a+b)+c=(a+c)+b
+rw [add_assoc]
+nth_rewrite 2 [add_comm]
+rw [← add_assoc]
+rfl
