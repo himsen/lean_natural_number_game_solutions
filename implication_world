@@ -1,0 +1,60 @@
+level 1: x+y=37 and 3x+z=42 then x+y=37
+exact h1
+
+level 2: 0+x=(0+y)+2 then x=y+2
+rw [zero_add] at h
+rw [zero_add] at h
+exact h
+
+level 3: x=37 and x=37->y=42 then y=42
+apply h2 at h1
+exact h1
+
+level 4: x+1=4 then x=3
+rw [four_eq_succ_three] at h
+rw [← succ_eq_add_one] at h
+apply succ_inj at h
+exact h
+
+level 5: x+1=4 then x=3
+apply succ_inj
+rw [succ_eq_add_one]
+rw [← four_eq_succ_three]
+exact h
+
+level 6: x=37 then x=37
+intro h
+exact h
+
+level 7: x+1=y+1 then x=y
+intro h
+repeat rw [← succ_eq_add_one] at h
+apply succ_inj at h
+exact h
+
+level 8: x=y and x/=y then contradiction
+apply h2
+exact h1
+
+level 9: 0/=1
+intro h
+rw [one_eq_succ_zero] at h
+apply zero_ne_succ at h
+exact h
+
+level 10: 1/=0
+symm
+exact zero_ne_one
+
+level 11: 2+2/=5
+intro h
+rw [add_succ] at h
+rw [add_succ] at h
+rw [add_zero] at h
+repeat rw [zero_ne_succ] at h
+repeat rw [zero_ne_succ] at h
+repeat apply [zero_ne_succ] at h
+repeat apply zero_ne_succ at h
+repeat apply succ_inj at h
+apply zero_ne_succ at h
+exact h
