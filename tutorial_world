@@ -1,0 +1,42 @@
+
+level 1: if x and q are arbitrary natural numbers, then 37x+q=37x+q
+rfl
+
+level 2: if x and y are natural numbers, and y=x+7, then 2y=2(x+7)
+rw [h]
+rfl
+
+level 3: 2 is the number after the number after 0.
+rw [two_eq_succ_one]
+rw [one_eq_succ_zero]
+rfl
+
+level 4: 2 is the number after the number after 0.
+rw [← one_eq_succ_zero]
+rw [← two_eq_succ_one]
+rfl
+
+level 5: a+(b+0)+(c+0) = a+b+c
+rw [add_zero]
+rw [add_zero]
+rfl
+
+level 6: a+(b+0)+(c+0) = a+b+c
+rw [add_zero c]
+rw [add_zero b]
+rfl
+
+level 7: succ_eq_add_one: For all natural  number a, we have succ(a)=a+1.
+rw [one_eq_succ_zero]
+rw [add_succ]
+rw [add_zero]
+rfl
+
+level 8: 2+2=4
+nth_rewrite 2 [two_eq_succ_one] -- only change the second `2` to `succ 1`.
+rw [add_succ]
+rw [one_eq_succ_zero]
+rw [add_succ, add_zero] -- two rewrites at once
+rw [← three_eq_succ_two] -- change `succ 2` to `3`
+rw [← four_eq_succ_three]
+rfl
