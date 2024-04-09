@@ -46,7 +46,7 @@ exact hx
 left
 exact hy
 
-level 8: x<=y or y<x (for natural numbers, obviously)
+level 8: x<=y or y<=x (for natural numbers, obviously)
 induction y with d hd
 right
 exact zero_le x
