@@ -1,0 +1,84 @@
+level 1: m*1=m
+rw [one_eq_succ_zero]
+rw [mul_succ]
+rw [mul_zero]
+rw [add_comm, add_zero]
+rfl
+
+level 2: 0*m=m
+induction m with d hd
+rw [mul_zero]
+rfl
+rw [mul_succ]
+rw [hd]
+rw [add_zero]
+rfl
+
+level 3: succ(a)*b=a*b+b
+induction b with d hd
+rw [mul_zero]
+rw [mul_zero]
+rw [add_zero]
+rfl
+rw [mul_succ]
+rw [hd]
+rw [mul_succ]
+rw [succ_eq_add_one]
+rw [succ_eq_add_one]
+rw [add_right_comm]
+rw [add_assoc]
+rw [add_comm d]
+nth_rewrite 2 [add_assoc]
+nth_rewrite 1 [add_assoc]
+rfl
+
+level 4: a*b=b*a
+induction b with d hd
+rw [mul_zero, zero_mul]
+rfl
+rw [mul_succ, hd, ← succ_mul]
+rfl
+
+level 5: 1*m=m
+rw [one_eq_succ_zero]
+rw [succ_mul]
+rw [zero_mul]
+rw [zero_add]
+rfl
+
+level 6: 2*m=m+m
+rw [two_eq_succ_one]
+rw [succ_mul]
+rw [one_mul]
+rfl
+
+level 7: a(b+c)=ab+ac
+induction c with d hd
+rw [add_zero]
+rw [mul_zero]
+rw [add_zero]
+rfl
+rw [add_succ]
+rw [mul_succ]
+rw [hd]
+rw [mul_succ]
+rw [add_assoc]
+rfl
+
+level 8: (a+b)*c=ac+bc
+rw [mul_comm, mul_add]
+nth_rewrite 1 [mul_comm]
+nth_rewrite 2 [mul_comm]
+rfl
+
+level 9: (ab)c=a(bc)
+induction a with d hd
+repeat rw [zero_mul]
+rfl
+nth_rewrite 1 [succ_eq_add_one]
+rw [add_mul]
+rw [add_mul]
+rw [hd]
+rw [one_mul]
+rw [← succ_mul]
+rfl
