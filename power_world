@@ -1,0 +1,92 @@
+level 1: 0^0=1
+rw [pow_zero]
+rfl
+
+level 2: 0^{succ(m)}=0
+rw [pow_succ, mul_zero]
+rfl
+
+level 3: a^1=a
+rw [one_eq_succ_zero]
+rw [pow_succ]
+rw [pow_zero]
+rw [one_mul]
+rfl
+
+level 4: 1^m=1
+induction m with d hd
+rw [pow_zero]
+rfl
+rw [pow_succ]
+rw [hd, mul_one]
+rfl
+
+level 5: a^2=a*a
+rw [two_eq_succ_one, pow_succ]
+rw [pow_one]
+rfl
+
+level 6: a^{m+n}=a^ma^n
+induction n with d hd
+rw [add_zero, pow_zero, mul_one]
+rfl
+rw [add_succ]
+rw [pow_succ]
+rw [hd]
+rw [mul_assoc]
+rw [← pow_succ]
+rfl
+
+level 7: (ab)^n=a^nb^n
+induction n with d hd
+rw [pow_zero]
+repeat rw [pow_zero]
+rw [mul_one]
+rfl
+rw [pow_succ]
+rw [← mul_assoc]
+rw [hd]
+rw [mul_assoc]
+rw [mul_assoc]
+rw [mul_comm a]
+nth_rewrite 2 [← mul_assoc]
+rw [← pow_succ]
+nth_rewrite 2 [mul_comm]
+rw [← mul_assoc]
+rw [← pow_succ]
+rfl
+
+level 8: (a^m)^n=a^{mn}
+induction n with d hd
+rw [mul_zero]
+rw [pow_zero]
+rw [pow_zero]
+rfl
+rw [pow_succ]
+rw [hd]
+rw [← pow_add]
+rw [← mul_succ]
+rfl
+
+level 9: (a+b)^2=a^2+b^2+2ab
+rw [pow_two]
+rw [mul_add]
+rw [add_mul]
+rw [add_mul]
+rw [← pow_two]
+rw [← add_assoc]
+rw [← pow_two]
+rw [add_assoc]
+nth_rewrite 3 [add_comm]
+rw [add_assoc]
+nth_rewrite 2 [← add_assoc]
+nth_rewrite 3 [add_comm]
+rw [mul_comm]
+rw [add_assoc]
+rw [← two_mul]
+rw [← mul_assoc]
+rw [← add_assoc]
+rfl
+
+level 10: Fermat's Last Theorem
+yeah right.... Nice joke.
