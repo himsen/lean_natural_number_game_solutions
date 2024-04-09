@@ -1,0 +1,36 @@
+level 1: a+(b+c)=b+(a+c)
+rw [← add_assoc, add_comm a b, add_assoc]
+rfl
+
+level 2: (a+b)+(c+d)=((a+c)+d)+b
+repeat rw [add_assoc]
+rw [add_left_comm b]
+rw [add_comm b d]
+rfl
+
+level 3: (d+f)+(h+(a+c))+(g+e+b)=a+b+c+d+e+f+g+h
+simp only [add_assoc, add_left_comm, add_comm]
+
+level 4: (d+f)+(h+(a+c))+(g+e+b)=a+b+c+d+e+f+g+h
+simp_add
+
+level 5: succ(a)=succ(b) then a=b
+rw [← pred_succ a, ← pred_succ b]
+tauto
+
+level 6: succ(a)/=0
+intro h
+rw [← is_zero_succ a]
+rw [h]
+triv
+
+level 7: a/=b then succ(a)/=succ(b)
+contrapose! h
+apply succ_inj
+apply h
+
+level 8: 20+20=40
+decide
+
+level 9: 2+2/=5
+decide
